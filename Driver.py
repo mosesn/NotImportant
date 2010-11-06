@@ -2,12 +2,19 @@ from View import *
 from Player import *
 from Torus import *
 from Map import *
+from Model import *
+from Controller import *
 
 view=View()
+controller=Controller(view)
+view.setController(controller)
+model=Model(view,controller)
+view.setModel(model)
+controller.setModel(model)
+
+
 view.run()
 
-torus=Torus(20,20)
 
-player=Player("Quentin",10,4,2)
+#player=Player("Quentin",10,4,2)
 
-map=Map(10,10)

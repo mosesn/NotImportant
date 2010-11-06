@@ -21,6 +21,12 @@ class Map:
             random_cell_x = random_cell % self.width
             random_cell_y = random_cell // self.width
             self.map[random_cell_x][random_cell_y] = 1
-            
-        
-            
+
+    def getRows(self):
+        return self.height
+
+    def getCols(self):
+        return self.width
+
+    def fetch(self,x,y):
+        return self.map[x][y]
