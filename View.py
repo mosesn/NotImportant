@@ -1,31 +1,41 @@
 from tkinter import *
 
-root = Tk()
-canvas = Canvas(root, width=500, height=500)
-canvas.pack()
+class View:
 
-def showPosEvent(event):
-    print('Widget=%s X=%s Y=%s' % (event.widget, event.x, event.y))
+    def __init__(self):
+        self.root=Tk()
+        self.canvas = Canvas(self.root, width=500, height=500)
+        self.canvas.pack()
+        self.widget = Label(self.root, text='')
+        self.widget.pack(expand=YES, fill=BOTH)
+        self.widget.bind('<Up>',self.onUpArrowKey)
+        self.widget.bind('<Down>',self.onDownArrowKey)
+        self.widget.bind('<Right>',self.onRightArrowKey)
+        self.widget.bind('<Left>',self.onLeftArrowKey)
+        self.widget.focus()
 
-def onUpArrowKey(event):
-    print('Got up arrow key press')
+#        root = Tk()
+#        canvas = Canvas(root, width=500, height=500)
+#        canvas.pack()
 
-def onLeftArrowKey(event):
-    print('Got left arrow key press')
+    def showPosEvent(self,event):
+        print('Widget=%s X=%s Y=%s' % (event.widget, event.x, event.y))
 
-def onRightArrowKey(event):
-    print('Got right arrow key press')
+    def onUpArrowKey(self,event):
+        print('Got up arrow key press')
 
-def onDownArrowKey(event):
-    print('Got down arrow key press')
+    def onLeftArrowKey(self,event):
+        print('Got left arrow key press')
 
-widget = Label(root, text='')
-widget.pack(expand=YES, fill=BOTH)
-widget.bind('<Up>',onUpArrowKey)
-widget.bind('<Down>',onDownArrowKey)
-widget.bind('<Right>',onRightArrowKey)
-widget.bind('<Left>',onLeftArrowKey)
+    def onRightArrowKey(self,event):
+        print('Got right arrow key press')
 
-widget.focus()
+    def onDownArrowKey(self,event):
+        print('Got down arrow key press')
 
-root.mainloop()
+    def run(self):
+        self.root.mainloop()
+
+'''
+Next, implement repaint
+'''

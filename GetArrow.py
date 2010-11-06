@@ -1,3 +1,9 @@
+'''
+Deprecated, replaced by Program.py, replaced by View.py
+MN
+Stolen from somewhere online
+'''
+
 from Tkinter import *
 
 def showPosEvent(event):

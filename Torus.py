@@ -1,27 +1,29 @@
 class Torus:
     def __init__(self,rowSize,colSize):
-        rows=rowSize
-        cols=colSize
-        rowPos=0
-        colPos=0
+        self.rows=rowSize
+        self.cols=colSize
+        self.rowPos=0
+        self.colPos=0
 
     def up(self):
-        rowPos--
-        if(rowPos<0):
-            rowPos=rows-1
+        self.rowPos-=1
+        if(self.rowPos<0):
+            self.rowPos=self.rows-1
 
     def down(self):
-        rowPos++
-        if(rowPos>=rows):
-            rowPos=0
+        self.rowPos+=1
+        if(self.rowPos>=self.rows):
+            self.rowPos=0
 
     def left(self):
-        colPos--
-        if(colPos<0):
-            colPos=cols-1
+        self.colPos-=1
+        if(self.colPos<0):
+            self.colPos=self.cols-1
 
     def right(self):
-        colPos++
-        if(colPos>=cols):
-            colPos=0
-
+        self.colPos+=1
+        if(self.colPos>=self.cols):
+            self.colPos=0
+'''
+Do we want to make cols & rows globals?  Discuss.
+'''
