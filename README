@@ -1,0 +1,9 @@
+README
+Mark Liu & Moses Nakamura
+"Not Important" Game Engine
+
+python3 Driver.py to run
+	everything pretty much works
+	images have not been implemented yet
+	there is no collision detection for "objects"
+	map.randomize is still broken

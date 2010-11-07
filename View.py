@@ -71,15 +71,15 @@ class View:
                 for i in range(self.mapping.getCols()):
                     for j in range(self.mapping.getRows()):
                         if(self.mapping.fetch(i,j)==1):
-                            self.canvas.itemconfigure(self.tiles[i][j],"green")
+                            self.canvas.itemconfigure(self.tiles[i][j],fill="green")
                         else:
-                            self.canvas.itemconfigure(self.tiles[i][j],"grey")
+                            self.canvas.itemconfigure(self.tiles[i][j],fill="grey")
             else:
+                self.hasInitMapping=True
                 self.tiles=[[]]
                 for i in range(self.mapping.getCols()):
                     self.tiles.append([])
                     for j in range(self.mapping.getRows()):
-                        print("something awesome is happening")
                         if(self.mapping.fetch(i,j)==1):
                             self.tiles[i].append(self.canvas.create_rectangle((i*tilesize,j*tilesize,(i+1)*tilesize,(j+1)*tilesize),fill="green"))
                         else:
@@ -88,7 +88,7 @@ class View:
             if(self.hasGenPlayered):
                 x=self.model.playerX
                 y=self.model.playerY
-                self.canvas.coords(self.player,x,y,x+tilesize,y+tilesize)
+                self.canvas.coords(self.player,x*tilesize,y*tilesize,x*tilesize+tilesize,y*tilesize+tilesize)
             else:
                 x=self.model.playerX
                 y=self.model.playerY
@@ -99,3 +99,6 @@ class View:
         print("generating player")
         if(not self.hasGenPlayered):
             self.player=self.canvas.create_rectangle((x0,y0,x0+tilesize,y0+tilesize),fill="blue")
+
+    def getTileSize(self):
+        return tilesize
