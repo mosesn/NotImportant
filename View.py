@@ -4,7 +4,7 @@ class View:
 
     def __init__(self):
         global tilesize
-        tilesize=4
+        tilesize=50
         self.root=Tk()
         self.canvas = Canvas(self.root, width=500, height=500)
         self.canvas.pack()
@@ -34,22 +34,22 @@ class View:
 
     def onUpArrowKey(self,event):
         if(self.hasController):
-            self.controller(move(1))
+            self.controller.movePlayer(1)
         print("up")
 
     def onLeftArrowKey(self,event):
         if(self.hasController):
-            self.controller(move(2))
+            self.controller.movePlayer(2)
         print("left")
 
     def onRightArrowKey(self,event):
         if(self.hasController):
-            self.controller(move(3))
+            self.controller.movePlayer(3)
         print("right")
 
     def onDownArrowKey(self,event):
         if(self.hasController):
-            self.controller(move(4))
+            self.controller.movePlayer(4)
         print("down")
 
     def run(self):
@@ -77,21 +77,25 @@ class View:
             else:
                 self.tiles=[[]]
                 for i in range(self.mapping.getCols()):
+                    self.tiles.append([])
                     for j in range(self.mapping.getRows()):
-                       if(self.mapping.fetch(i,j)==1):
-                            self.tiles[i][j]=self.canvas.create_rectangle(i*tilesize,j*tilesize,(i+1)*tilesize,(j+1)*tilesize,"green")
-                       else:
-                           self.tiles[i][j]=self.canvas.create_rectangle(i*tilesize,j*tilesize,(i+1)*tilesize,(j+1)*tilesize,"grey")
+                        print("something awesome is happening")
+                        if(self.mapping.fetch(i,j)==1):
+                            self.tiles[i].append(self.canvas.create_rectangle((i*tilesize,j*tilesize,(i+1)*tilesize,(j+1)*tilesize),fill="green"))
+                        else:
+                            self.tiles[i].append(self.canvas.create_rectangle((i*tilesize,j*tilesize,(i+1)*tilesize,(j+1)*tilesize),fill="grey"))
                 self.hasInitMapping=True
             if(self.hasGenPlayered):
                 x=self.model.playerX
                 y=self.model.playerY
                 self.canvas.coords(self.player,x,y,x+tilesize,y+tilesize)
             else:
+                x=self.model.playerX
+                y=self.model.playerY
                 self.genPlayer(x,y)
                 self.hasGenPlayered=True
 
     def genPlayer(self,x0=0,y0=0):
+        print("generating player")
         if(not self.hasGenPlayered):
-            self.player=self.canvas.create_rectangle(x0,y0,x0+tilesize,y0+tilesize,"blue")
-
+            self.player=self.canvas.create_rectangle((x0,y0,x0+tilesize,y0+tilesize),fill="blue")
